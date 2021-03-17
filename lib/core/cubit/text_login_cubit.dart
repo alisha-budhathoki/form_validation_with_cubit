@@ -20,17 +20,31 @@ class TextLoginCubit extends Cubit<TextLoginState> with ValidationMixin {
       emit(EmailTextValid());
     }
   }
-
-  Future<void> checkPasswordError(String password) async {
+ Future<void> checkPasswordError(String password) async {
     print('inside print error checking');
     if (this.isFieldEmpty(password)) {
       print('Empty Password here');
-      emit(PasswordTextEmpty());
+      emit(LoginPasswordEmpty());
     } else if (password.length <3) {
       print('Invalid password here');
-      emit(PasswordTextInvalid());
+      emit(LoginPasswordInvalid());
     } else {
-      emit(PasswordTextValid());
+      emit(LoginPassswordValid());
     }
   }
+  signInInput(Map<String, String> map) async {
+    String email = map['email'];
+    String password = map['password'];
+
+    if (this.isFieldEmpty(email) || this.isFieldEmpty(password)) {
+      print('Empty email and password here');
+      emit(ButtonEmpty());
+    } else if (!this.validateEmailAddress(email) || password.length<3) {
+      emit(ButtonValid());
+      print("Invalid email and password");
+    } else {
+      print("Valid email and password");
+      emit(ButtonInvalid());
+    }
+  } 
 }

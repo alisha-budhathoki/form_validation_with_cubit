@@ -11,11 +11,16 @@ class EmailTextInvalid extends TextLoginState {}
 
 class EmailTextValid extends TextLoginState {}
 
-class PasswordTextInitial extends TextLoginState {}
+class LoginPasswordInitial extends TextLoginState {}
 
-class PasswordTextEmpty extends TextLoginState {}
+class LoginPasswordEmpty extends TextLoginState {}
 
-class PasswordTextInvalid extends TextLoginState {}
+class LoginPasswordInvalid extends TextLoginState {}
 
-class PasswordTextValid extends TextLoginState {}
+class LoginPassswordValid extends TextLoginState {}
 
+class ButtonEmpty extends TextLoginState {}
+
+class ButtonValid extends TextLoginState {}
+
+class ButtonInvalid extends TextLoginState {}
