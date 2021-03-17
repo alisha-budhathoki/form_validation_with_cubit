@@ -10,11 +10,11 @@ class SubmitButtonCubit extends Cubit<SubmitCubitState> with ValidationMixin {
   signInInput(Map<String, String> map) async {
     String email = map['email'];
     String password = map['password'];
-
     if (this.isFieldEmpty(email) || this.isFieldEmpty(password)) {
       print('Empty email and password here');
       emit(SignInButtonEmpty());
-    } else if (!this.validateEmailAddress(email) || !this.isPasswordValiid(password)) {
+    } else if (!this.validateEmailAddress(email) ||
+        !this.isPasswordValiid(password)) {
       emit(SignInButtonInvalid());
       print("Invalid email and password");
     } else {

@@ -7,7 +7,7 @@ import 'package:textfield_validation_bloc/core/cubit/login_cubit/submit_button_c
 class HomeTextField extends StatelessWidget {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

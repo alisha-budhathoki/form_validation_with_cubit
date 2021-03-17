@@ -6,7 +6,6 @@ import 'package:textfield_validation_bloc/core/cubit/login_cubit/submit_button_c
 import 'package:textfield_validation_bloc/core/cubit/text_login_cubit.dart';
 import 'package:textfield_validation_bloc/pages/home_text_field.dart';
 
-
 void main() {
   runApp(MultiBlocProvider(
     providers: [
@@ -14,7 +13,7 @@ void main() {
         lazy: true,
         create: (_) => EmailCubitCubit(),
       ),
-       BlocProvider(
+      BlocProvider(
         lazy: true,
         create: (_) => TextLoginCubit(),
       ),
@@ -22,7 +21,7 @@ void main() {
         lazy: true,
         create: (_) => PasswordCubitCubit(),
       ),
-       BlocProvider(
+      BlocProvider(
         lazy: true,
         create: (_) => SubmitButtonCubit(),
       )
