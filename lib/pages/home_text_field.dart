@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:textfield_validation_bloc/core/cubit/login_cubit/email_cubit_cubit.dart';
-import 'package:textfield_validation_bloc/core/cubit/login_cubit/password_cubit_cubit.dart';
-import 'package:textfield_validation_bloc/core/cubit/login_cubit/submit_button_cubit.dart';
+import '../core/cubit/login_cubit/email_cubit_cubit.dart';
+import '../core/cubit/login_cubit/password_cubit_cubit.dart';
+import '../core/cubit/login_cubit/submit_button_cubit.dart';
 
 class HomeTextField extends StatelessWidget {
   final _emailController = TextEditingController();
@@ -19,9 +19,10 @@ class HomeTextField extends StatelessWidget {
           builder: (context, stateEmail) {
             return TextFormField(
               onChanged: (text) {
-                BlocProvider.of<EmailCubitCubit>(context)
+                context
+                    .read<EmailCubitCubit>()
                     .checkEmailError(this._emailController.text);
-                BlocProvider.of<SubmitButtonCubit>(context).signInInput({
+                context.read<SubmitButtonCubit>().signInInput({
                   "email": _emailController.text,
                   "password": _passwordController.text
                 });
@@ -41,9 +42,10 @@ class HomeTextField extends StatelessWidget {
           builder: (context, statePassword) {
             return TextField(
               onChanged: (text) {
-                BlocProvider.of<PasswordCubitCubit>(context)
+                context
+                    .read<PasswordCubitCubit>()
                     .checkPasswordError(this._passwordController.text);
-                BlocProvider.of<SubmitButtonCubit>(context).signInInput({
+                context.read<SubmitButtonCubit>().signInInput({
                   "email": _emailController.text,
                   "password": _passwordController.text
                 });
@@ -64,7 +66,7 @@ class HomeTextField extends StatelessWidget {
             return RaisedButton(
                 color: getColorButton(state),
                 onPressed: () {
-                  BlocProvider.of<SubmitButtonCubit>(context).signInInput({
+                  context.read<SubmitButtonCubit>().signInInput({
                     "email": _emailController.text,
                     "password": _passwordController.text
                   });
@@ -81,29 +83,29 @@ class HomeTextField extends StatelessWidget {
 
   TextStyle emailLabelStyle(EmailCubitState state) {
     if (state is EmailValueEmpty) {
-      return TextStyle(color: Colors.red);
+      return TextStyle(color: Colors.grey);
     }
     if (state is EmailValueInvalid) {
-      return TextStyle(color: Colors.yellow);
+      return TextStyle(color: Colors.red);
     }
     if (state is EmailValueValid) {
-      return TextStyle(color: Colors.black);
+      return TextStyle(color: Colors.green);
     }
-    return TextStyle(color: Colors.green);
+    return TextStyle(color: Colors.grey);
   }
 
   TextStyle passwordLabelStyle(PasswordCubitState state) {
     if (state is PasswordTextEmpty) {
-      return TextStyle(color: Colors.red);
+      return TextStyle(color: Colors.grey);
     }
     if (state is PasswordTextInvalid) {
-      return TextStyle(color: Colors.yellow);
+      return TextStyle(color: Colors.red);
     }
     if (state is PasswordTextValid) {
-      return TextStyle(color: Colors.black);
+      return TextStyle(color: Colors.green);
     }
 
-    return TextStyle(color: Colors.green);
+    return TextStyle(color: Colors.grey);
   }
 
   getColorButton(SubmitCubitState state) {

@@ -24,11 +24,13 @@ void main() {
       BlocProvider(
         lazy: true,
         create: (_) => SubmitButtonCubit(),
-      )
+      ),
     ],
     child: MyApp(),
   ));
 }
+
+AppProvider() {}
 
 class MyApp extends StatelessWidget {
   @override
