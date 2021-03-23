@@ -1,22 +1,19 @@
 part of 'login_cubit.dart';
 
 class LoginState {
+  final EmailState email;
+  final PasswordState password;
+  final FormzStatus status;
+
   const LoginState({
-    this.email = const Email.pure(),
-    this.password = const Password.pure(),
+    this.email = const EmailState.pure(),
+    this.password = const PasswordState.pure(),
     this.status = FormzStatus.pure,
   });
 
-  final Email email;
-  final Password password;
-  final FormzStatus status;
-
-  @override
-  List<Object> get props => [email, password, status];
-
   LoginState copyWith({
-    Email email,
-    Password password,
+    EmailState email,
+    PasswordState password,
     FormzStatus status,
   }) {
     return LoginState(

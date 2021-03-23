@@ -1,7 +1,6 @@
 mixin ValidationMixin {
-  bool isFieldEmpty(String fieldValue) => fieldValue.isEmpty ?? true;
   bool isPasswordValiid(String password) => password.length > 2 ? true : false;
-  bool validateEmailAddress(String email) {
+  bool isValidEmailAddress(String email) {
     if (email == null) {
       return false;
     }
