@@ -113,12 +113,18 @@ class _LoginButton extends StatelessWidget {
         return ElevatedButton(
           style: ElevatedButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
+              borderRadius: BorderRadius.circular(20.0),
             ),
             primary: Colors.green,
           ),
           child: const Text('SUBMIT'),
-          onPressed: state.status.isValidated ? () {} : null,
+          onPressed: state.status.isValidated
+              ? () {
+                  Navigator.of(context).pushNamed(
+                    '/home',
+                  );
+                }
+              : null,
         );
       },
     );
