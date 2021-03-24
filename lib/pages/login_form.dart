@@ -110,23 +110,15 @@ class _LoginButton extends StatelessWidget {
     return BlocBuilder<LoginCubit, LoginState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
-        return RaisedButton(
-          onPressed: () {},
-          child: Text(
-            'SUBMIT',
-            style: TextStyle(
-              color: state.status.isPure
-                  ? Colors.black
-                  : state.status.isInvalid
-                      ? Colors.black
-                      : Colors.white,
+        return ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
             ),
+            primary: Colors.green,
           ),
-          color: state.status.isPure
-              ? Colors.grey
-              : state.status.isInvalid
-                  ? Colors.grey
-                  : Colors.green,
+          child: const Text('SUBMIT'),
+          onPressed: state.status.isValidated ? () {} : null,
         );
       },
     );
