@@ -17,6 +17,8 @@ class LoginForm extends StatelessWidget {
                 const SizedBox(height: 8.0),
                 _PasswordInput(),
                 const SizedBox(height: 8.0),
+                _AgeInput(),
+                const SizedBox(height: 8.0),
                 _LoginButton(),
               ],
             ),
@@ -68,6 +70,30 @@ class _PasswordInput extends StatelessWidget {
               color: state.password.pure
                   ? Colors.grey
                   : state.password.invalid
+                      ? Colors.red
+                      : Colors.green,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _AgeInput extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<LoginCubit, LoginState>(
+      buildWhen: (previous, current) => previous.age != current.age,
+      builder: (context, state) {
+        return TextField(
+          onChanged: (age) => context.read<LoginCubit>().ageChanged(age),
+          decoration: InputDecoration(
+            labelText: 'age',
+            labelStyle: TextStyle(
+              color: state.age.pure
+                  ? Colors.grey
+                  : state.age.invalid
                       ? Colors.red
                       : Colors.green,
             ),

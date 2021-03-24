@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:formz/formz.dart';
-
-import 'email.dart';
-import 'password.dart';
+import 'age_state.dart';
+import 'email_state.dart';
+import 'password_state.dart';
 
 part 'login_state.dart';
 
@@ -15,7 +15,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         email: email,
-        status: Formz.validate([email, state.password]),
+        status: Formz.validate([email, state.password, state.age]),
       ),
     );
   }
@@ -26,7 +26,18 @@ class LoginCubit extends Cubit<LoginState> {
     emit(
       state.copyWith(
         password: password,
-        status: Formz.validate([state.email, password]),
+        status: Formz.validate([state.email, password, state.age]),
+      ),
+    );
+  }
+
+  void ageChanged(String value) {
+    final age = AgeState.dirty(value);
+
+    emit(
+      state.copyWith(
+        age: age,
+        status: Formz.validate([state.email, state.password, age]),
       ),
     );
   }
