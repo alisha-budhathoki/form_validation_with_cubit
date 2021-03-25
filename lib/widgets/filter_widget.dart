@@ -38,6 +38,7 @@ class _FilterWidgetState extends State<FilterWidget> {
             ),
             value: _isChecked[index],
             onChanged: (val) {
+              print('ajsjasa' + val.toString());
               setState(
                 () {
                   _isChecked[index] = val;

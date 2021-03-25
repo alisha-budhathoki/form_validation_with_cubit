@@ -87,6 +87,7 @@ class _AgeInput extends StatelessWidget {
       buildWhen: (previous, current) => previous.age != current.age,
       builder: (context, state) {
         return TextField(
+          keyboardType: TextInputType.number,
           onChanged: (age) => context.read<LoginCubit>().ageChanged(age),
           decoration: InputDecoration(
             labelText: 'age',

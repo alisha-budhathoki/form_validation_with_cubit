@@ -9,29 +9,46 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (_) {
-                  return CustomDialog(
-                      title: "Feedback",
-                      content: FilterAdvancedWidget(),
-                      firstActionValue: "okay",
-                      secondActionValue: "cancel");
-                },
-              );
-            },
-            style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                showDialog(
+                  context: context,
+                  builder: (_) {
+                    return CustomDialog(
+                        title: "Feedback",
+                        content: FilterAdvancedWidget(),
+                        firstActionValue: "okay",
+                        secondActionValue: "cancel");
+                  },
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                primary: Colors.teal,
               ),
-              primary: Colors.teal,
+              child: Text('open dialog'),
             ),
-            child: Text('open dialog'),
-          ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  '/checkbox_screen',
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20.0),
+                ),
+                primary: Colors.teal,
+              ),
+              child: Text('open checkbox screen'),
+            ),
+          ],
         ),
       ),
     );
