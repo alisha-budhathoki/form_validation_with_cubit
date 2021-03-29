@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:textfield_validation_bloc/core/cubit/cubit/checkbox_cubit.dart';
 import 'package:textfield_validation_bloc/core/cubit/dropdown_cubit.dart';
+import 'package:textfield_validation_bloc/core/model/category.dart';
 import 'core/cubit/login_cubit.dart';
 import 'pages/router/app_router.dart';
-import 'pages/screens/login_form.dart';
 
 void main() {
   runApp(MultiBlocProvider(
@@ -19,7 +19,7 @@ void main() {
       ),
       BlocProvider(
         lazy: true,
-        create: (_) => DropdownCubit(),
+        create: (_) => DropdownCubit(Category('')),
       ),
     ],
     child: MyApp(),

@@ -4,3 +4,5 @@ part of 'dropdown_cubit.dart';
 abstract class DropdownState {}
 
 class DropdownInitial extends DropdownState {}
+
+class DropdownLoaded extends DropdownState {}
