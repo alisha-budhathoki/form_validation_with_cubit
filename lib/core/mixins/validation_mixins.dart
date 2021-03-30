@@ -14,4 +14,7 @@ mixin ValidationMixin {
       age.length > 0 && int.parse(age) < 20 && int.parse(age) > 0
           ? true
           : false;
+  bool isAgeGreater(String age) =>
+      age.length > 0 && int.parse(age) > 0 ? true : false;
+  bool isAgeLess(String age) => int.parse(age) < 20 ? true : false;
 }

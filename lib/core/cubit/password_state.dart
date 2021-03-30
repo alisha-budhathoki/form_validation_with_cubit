@@ -6,7 +6,7 @@ enum PasswordValidationError { invalid }
 class PasswordState extends FormzInput<String, PasswordValidationError>
     with ValidationMixin {
   const PasswordState.pure() : super.pure('');
-  const PasswordState.dirty([String value = '']) : super.dirty(value);
+  const PasswordState.dirty([String value]) : super.dirty(value);
 
   @override
   PasswordValidationError validator(String value) {

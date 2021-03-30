@@ -41,4 +41,18 @@ class LoginCubit extends Cubit<LoginState> {
       ),
     );
   }
+
+  Future<void> submitValues(
+      String emailVal, String passwordVal, String ageVal) async {
+    emit(
+      state.copyWith(status: FormzStatus.submissionInProgress),
+    );
+    if (emailVal == 'alisha@gmail.com' &&
+        passwordVal == 'abcdef' &&
+        ageVal == '12') {
+      return emit(state.copyWith(status: FormzStatus.submissionSuccess));
+    } else {
+      return emit(state.copyWith(status: FormzStatus.submissionFailure));
+    }
+  }
 }

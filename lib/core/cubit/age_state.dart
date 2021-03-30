@@ -11,6 +11,11 @@ class AgeState extends FormzInput<String, AgeValidationError>
   @override
   AgeValidationError validator(String value) {
     print(value.isNotEmpty);
-    return this.isValidAge(value) ? null : AgeValidationError.invalid;
+    // return this.isValidAge(value) ? null : AgeValidationError.invalid;
+    return this.isAgeGreater(value)
+        ? this.isAgeLess(value)
+            ? null
+            : AgeValidationError.invalid
+        : AgeValidationError.invalid;
   }
 }
