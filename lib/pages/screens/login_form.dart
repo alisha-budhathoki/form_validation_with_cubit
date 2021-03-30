@@ -118,8 +118,25 @@ class _AgeInput extends StatelessWidget {
 class _LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginCubit, LoginState>(
-      buildWhen: (previous, current) => previous.status != current.status,
+    return BlocConsumer<LoginCubit, LoginState>(
+      listener: (context, state) {
+        if (state.status.isSubmissionFailure == true) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Failed signed in'),
+            ),
+          );
+        }
+        if (state.status.isSubmissionSuccess == true) {
+          Scaffold.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Sign in successful'),
+            ),
+          );
+        }
+      },
+      listenWhen: (previous, current) => previous.status != current.status,
+      // buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? CircularProgressIndicator()
@@ -133,42 +150,11 @@ class _LoginButton extends StatelessWidget {
                 child: const Text('SUBMIT'),
                 onPressed: state.status.isValidated
                     ? () {
-                        state.status.isSubmissionFailure.toString() == "true"
-                            ? {
-                                print('abc' +
-                                    "   " +
-                                    state.status.isSubmissionFailure
-                                        .toString()),
-                                Scaffold.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Failed signed in'),
-                                  ),
-                                )
-                              }
-                            : {};
-                        state.status.isSubmissionSuccess.toString() == "true"
-                            ? {
-                                print('xyz' +
-                                    "   " +
-                                    state.status.isSubmissionFailure
-                                        .toString()),
-                                Scaffold.of(context).showSnackBar(
-                                  SnackBar(
-                                    content: Text('Sign in successful'),
-                                  ),
-                                )
-                              }
-                            : null;
                         context.read<LoginCubit>().submitValues(
                               emailController.text.toString(),
                               passwordController.text.toString(),
                               ageController.text.toString(),
                             );
-
-                        // print(emailController.text.toString());
-                        // Navigator.of(context).pushNamed(
-                        //   '/home',
-                        // );
                       }
                     : null,
               );

@@ -50,9 +50,12 @@ class LoginCubit extends Cubit<LoginState> {
     if (emailVal == 'alisha@gmail.com' &&
         passwordVal == 'abcdef' &&
         ageVal == '12') {
-      return emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      emit(state.copyWith(status: FormzStatus.submissionSuccess));
+      print('abshas' + state.status.isSubmissionSuccess.toString());
     } else {
-      return emit(state.copyWith(status: FormzStatus.submissionFailure));
+      emit(state.copyWith(status: FormzStatus.submissionFailure));
+      print('jeije' + state.status.isSubmissionSuccess.toString());
+      print('eiurieu' + state.status.isSubmissionFailure.toString());
     }
   }
 }
