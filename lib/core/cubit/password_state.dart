@@ -1,9 +1,11 @@
-import 'package:formz/formz.dart';
+import 'package:textfield_validation_bloc/core/cubit/formz_local.dart';
+
 import 'package:textfield_validation_bloc/core/mixins/validation_mixins.dart';
 
 enum PasswordValidationError { invalid }
 
-class PasswordState extends FormzInput<String, PasswordValidationError>
+class PasswordState
+    extends FormzInput<String, PasswordValidationError, PasswordValidationError>
     with ValidationMixin {
   const PasswordState.pure() : super.pure('');
   const PasswordState.dirty([String value]) : super.dirty(value);
@@ -13,5 +15,10 @@ class PasswordState extends FormzInput<String, PasswordValidationError>
     return this.isPasswordValiid(value)
         ? null
         : PasswordValidationError.invalid;
+  }
+
+  @override
+  PasswordValidationError validatorSecond(String value) {
+    throw UnimplementedError();
   }
 }

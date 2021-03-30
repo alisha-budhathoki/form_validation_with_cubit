@@ -10,11 +10,28 @@ mixin ValidationMixin {
         .hasMatch(email);
   }
 
-  bool isValidAge(String age) =>
-      age.length > 0 && int.parse(age) < 20 && int.parse(age) > 0
-          ? true
-          : false;
-  bool isAgeGreater(String age) =>
-      age.length > 0 && int.parse(age) > 0 ? true : false;
-  bool isAgeLess(String age) => int.parse(age) < 20 ? true : false;
+  // bool isValidAge(String age) =>
+  //     age.length > 0 && int.parse(age) < 20 && int.parse(age) > 0
+  //         ? true
+  //         : false;
+  bool isAgeLess(String age) {
+    if (age.length > 0 && int.parse(age) < 20) {
+      print('less age true here');
+      return true;
+    } else {
+      print('less age false');
+      return false;
+    }
+  }
+
+  bool isAgeGreater(String age) {
+    print('age value here: ' + age.toString());
+    if (age.length > 0 && int.parse(age) > 0) {
+      print('here true');
+      return true;
+    } else {
+      print('here false');
+      return false;
+    }
+  }
 }

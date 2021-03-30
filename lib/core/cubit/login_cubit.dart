@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:formz/formz.dart';
+import 'package:textfield_validation_bloc/core/cubit/formz_local.dart';
 import 'age_state.dart';
 import 'email_state.dart';
 import 'password_state.dart';

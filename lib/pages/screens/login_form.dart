@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:textfield_validation_bloc/core/cubit/login_cubit.dart';
-import 'package:formz/formz.dart';
+import 'package:textfield_validation_bloc/core/cubit/formz_local.dart';
 
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
@@ -104,9 +104,11 @@ class _AgeInput extends StatelessWidget {
             labelStyle: TextStyle(
               color: state.age.pure
                   ? Colors.grey
-                  : state.age.invalid
-                      ? Colors.red
-                      : Colors.green,
+                  : state.age.valid
+                      ? Colors.green
+                      : state.age.validSecond
+                          ? Colors.blue
+                          : Colors.yellow,
             ),
           ),
         );
