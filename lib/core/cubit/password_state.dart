@@ -11,14 +11,14 @@ class PasswordState
   const PasswordState.dirty([String value]) : super.dirty(value);
 
   @override
-  PasswordValidationError validator(String value) {
+  PasswordValidationError validatorFirstCase(String value) {
     return this.isPasswordValiid(value)
         ? null
         : PasswordValidationError.invalid;
   }
 
   @override
-  PasswordValidationError validatorSecond(String value) {
+  PasswordValidationError validatorSecondCase(String value) {
     throw UnimplementedError();
   }
 }

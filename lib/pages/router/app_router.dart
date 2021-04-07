@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:textfield_validation_bloc/pages/screens/checkbox_screen.dart';
 import 'package:textfield_validation_bloc/pages/screens/dropdown_screen.dart';
 import 'package:textfield_validation_bloc/pages/screens/home_screen.dart';
 import 'package:textfield_validation_bloc/pages/screens/login_form.dart';

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:textfield_validation_bloc/widgets/custom_dialog.dart';
-import 'package:textfield_validation_bloc/widgets/filter_adances_widget.dart';
-import 'package:textfield_validation_bloc/widgets/filter_widget.dart';
+import 'package:textfield_validation_bloc/ui/widgets/custom_dialog.dart';
+import 'package:textfield_validation_bloc/ui/widgets/filter_adances_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key key}) : super(key: key);

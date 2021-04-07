@@ -11,14 +11,13 @@ class AgeState
   const AgeState.dirty([String value = '']) : super.dirty(value);
 
   @override
-  AgeValidationLessError validator(String value) {
+  AgeValidationLessError validatorFirstCase(String value) {
     print(value.isNotEmpty);
     return this.isAgeLess(value) ? null : AgeValidationLessError.invalidAgeLess;
   }
 
   @override
-  AgeValidationMoreError validatorSecond(String value) {
-    print("Inside here");
+  AgeValidationMoreError validatorSecondCase(String value) {
     return this.isAgeGreater(value)
         ? null
         : AgeValidationMoreError.invalidAgeMore;

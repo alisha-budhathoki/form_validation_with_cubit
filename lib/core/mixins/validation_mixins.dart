@@ -15,22 +15,18 @@ mixin ValidationMixin {
   //         ? true
   //         : false;
   bool isAgeLess(String age) {
-    if (age.length > 0 && int.parse(age) < 20) {
-      print('less age true here');
+    if (age.length > 0 && int.parse(age) < 20 && int.parse(age) > 0) {
       return true;
     } else {
-      print('less age false');
       return false;
     }
   }
 
   bool isAgeGreater(String age) {
     print('age value here: ' + age.toString());
-    if (age.length > 0 && int.parse(age) > 0) {
-      print('here true');
+    if (age.length > 0 && int.parse(age) > 40 && int.parse(age) < 60) {
       return true;
     } else {
-      print('here false');
       return false;
     }
   }

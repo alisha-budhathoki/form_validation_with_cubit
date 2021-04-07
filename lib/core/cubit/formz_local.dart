@@ -122,23 +122,14 @@ abstract class FormzInput<T, E1, E2> {
   ///   - if the input has been modified and validation succeeded.
   FormzInputStatus get status => pure
       ? FormzInputStatus.pure
-      : valid
+      : validFirstCase
           ? FormzInputStatus.valid
           : FormzInputStatus.invalid;
 
   /// Returns a validation error if the [FormzInput] is invalid.
   /// Returns `null` if the [FormzInput] is valid.
-  // E1 get error => validator(value);
-
-  // E2 get errorSecond => validatorSecond(value);
-
-  /// Whether the [FormzInput] value is valid according to the
-  /// overridden `validator`.
-  ///
-  /// Returns `true` if `validator` returns `null` for the
-  /// current [FormzInput] value and `false` otherwise.
-  bool get valid => validator(value) == null;
-  bool get validSecond => validatorSecond(value) == null;
+  bool get validFirstCase => validatorFirstCase(value) == null;
+  bool get validSecondCase => validatorSecondCase(value) == null;
 
   /// Whether the [FormzInput] value is not valid.
   /// A value is invalid when the overridden `validator`
@@ -147,8 +138,8 @@ abstract class FormzInput<T, E1, E2> {
 
   /// A function that must return a validation error if the provided
   /// [value] is invalid and `null` otherwise.
-  E1 validator(T value);
-  E2 validatorSecond(T value);
+  E1 validatorFirstCase(T value);
+  E2 validatorSecondCase(T value);
 
   @override
   int get hashCode => value.hashCode ^ pure.hashCode;
@@ -173,35 +164,13 @@ class Formz {
     assert(inputs != null);
     return inputs.every((element) => element.pure)
         ? FormzStatus.pure
-        : inputs.any((input) => input.valid == false)
+        : inputs.any((input) => input.validFirstCase == false)
             ? FormzStatus.invalid
             : FormzStatus.valid;
   }
 }
 
-/// Mixin that automatically handles validation of all [FormzInput]s present in
-/// the [inputs].
-///
-/// When mixing this in, you are required to override the [inputs] getter and
-/// provide all [FormzInput]s you want to automatically validate.
-///
-/// ```dart
-/// class LoginFormState with FormzMixin {
-///  LoginFormState({
-///    this.username = const Username.pure(),
-///    this.password = const Password.pure(),
-///  });
-///
-///  final Username username;
-///  final Password password;
-///
-///  @override
-///  List<FormzInput> get inputs => [username, password];
-/// }
-/// ```
 mixin FormzMixin {
-  /// [FormzStatus] getter which computes the status based on the
-  /// validity of the [inputs].
   FormzStatus get status => Formz.validate(inputs);
 
   /// Returns all [FormzInput] instances.

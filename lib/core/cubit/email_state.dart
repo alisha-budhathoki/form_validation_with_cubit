@@ -10,14 +10,14 @@ class EmailState
   const EmailState.dirty([String value]) : super.dirty(value);
 
   @override
-  EmailValidationError validator(String value) {
+  EmailValidationError validatorFirstCase(String value) {
     return this.isValidEmailAddress(value)
         ? null
         : EmailValidationError.invalid;
   }
 
   @override
-  EmailValidationError validatorSecond(String value) {
+  EmailValidationError validatorSecondCase(String value) {
     // TODO: implement validatorSecond
     throw UnimplementedError();
   }
